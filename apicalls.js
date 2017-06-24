@@ -1,9 +1,4 @@
-$(document).ready(function() {
-	$('#tabs a').click(function(e) {
-		e.preventDefault()
-		$(this).tab('show')
-	})
-	/* let yelpurl  = "https://api.yelp.com/v3/businesses/search?term=frat&location=";
+let yelpurl  = "https://api.yelp.com/v3/businesses/search?term=frat&location=";
 let location = inputlocation.replace(",", "%2C")
 let totalurl = yelpurl + location
 
@@ -16,5 +11,4 @@ $.getJSON((totalurl), function(data) {
   name = data.businesses[x].name
   lat = data.businesses[x].coordinates.latitude
   long = data.businesses[x].coordinates.longitude
-} **/
-});
+}
