@@ -1,3 +1,8 @@
 $(document).ready(function() {
-	console.log("ready");
-});
+	$('#tabs a').click(function(e) {
+		e.preventDefault()
+		$(this).tab('show')
+	})
+
+
+})
