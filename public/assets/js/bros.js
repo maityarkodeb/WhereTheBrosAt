@@ -25,6 +25,7 @@ $(document).ready(function() {
 	            long : data.businesses[i].coordinates.longitude
 	            })
 	        }
+	        console.log(arr)
 	      }
 	})
 	} 
