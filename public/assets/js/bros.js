@@ -20,11 +20,10 @@ $(document).ready(function() {
 	        var arr = []
 
 	        for (var i = 0; i < lengtharray; i++) {
-	            arr.push({
-	            name : data.businesses[i].name,
-	            lat : data.businesses[i].coordinates.latitude,
-	            long : data.businesses[i].coordinates.longitude
-	            })
+	            arr[i] = [data.businesses[i].name, 
+	            data.businesses[i].coordinates.latitude, 
+	            data.businesses[i].coordinates.longitude,
+	            data.businesses[i].location.display_address]
 	        }
 	        console.log(arr)
 	      }
