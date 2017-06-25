@@ -1,11 +1,16 @@
 let express = require('express')
+let Yelp = require('node-yelp-fusion');
+let path = require("path")
 let app = express();
-var Yelp = require('node-yelp-fusion');
+
 
 let clientId = process.env.CLIENT_ID;
 let clientSecret = process.env.CLIENT_SECRET;
-var yelp= new Yelp({ id:clientId , secret:clientSecret });
+let yelp = new Yelp({ id:clientId , secret:clientSecret });
 
+
+let publicPath = path.resolve(__dirname, "public")
+app.use(express.static(publicPath))
 
 app.get('/:search', function(req, res) {
 let input = req.params.search
