@@ -7,6 +7,7 @@ $(document).ready(function() {
 	$('#goBtn').click(function () {
 		let location = $('#location').val();
 		console.log(location)
+		retrieveInfo(location)
 	});
 
 	function retrieveInfo(location) {
@@ -15,10 +16,10 @@ $(document).ready(function() {
 	      url: ("/" + location),
 	      
 	      success: function(data) {
-	        var lengtharray = data.busineses.length
+	        var lengtharray = data.businesses.length
 	        var arr = []
 
-	        for (var i =o; i < lengtharray; i++) {
+	        for (var i = 0; i < lengtharray; i++) {
 	            arr.push({
 	            name : data.businesses[i].name,
 	            lat : data.businesses[i].coordinates.latitude,
