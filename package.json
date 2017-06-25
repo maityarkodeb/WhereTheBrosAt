@@ -25,3 +25,7 @@
   },
   "homepage": "https://github.com/maityarkodeb/WhereTheBrosAt#readme"
 }
+
+"scripts": {
+    "start": "node index.js"
+}
