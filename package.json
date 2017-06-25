@@ -1,0 +1,26 @@
+{
+  "name": "wherethebrosat",
+  "version": "1.0.0",
+  "description": "find the bros",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "node-yelp-fusion": "^1.0.4",
+    "yelp-fusion": "^1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maityarkodeb/WhereTheBrosAt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maityarkodeb/WhereTheBrosAt/issues"
+  },
+  "homepage": "https://github.com/maityarkodeb/WhereTheBrosAt#readme"
+}
