@@ -22,7 +22,7 @@ $(document).ready(function() {
 	$('#goBtn').click(function () {
 		let location = $('#location').val();
 		
-		if(location == ""){
+		if(location == "" ||  $.trim(location) == "" || location.replace(" ", "") == ""){
 	    	$("#alertpopup").show()
 	    	}
 	    else {
