@@ -4,8 +4,18 @@ $(document).ready(function() {
 		$(this).tab('show')
 	})
 
+	$('textarea').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+       ///$("#map").empty();
+		let location = $('#location').val();
+
+		retrieveInfo(location)
+    }
+	});
+
 	$('#goBtn').click(function () {
-		$("#map").empty();
+		///$("#map").empty();
 		let location = $('#location').val();
 
 		retrieveInfo(location)
@@ -52,9 +62,10 @@ $(document).ready(function() {
 	            arr[i] = [data["listings"].businesses[i].name, 
 	            data["listings"].businesses[i].coordinates.latitude, 
 	            data["listings"].businesses[i].coordinates.longitude,
-	            data["listings"].businesses[i].location.display_address]
+	            data["listings"].businesses[i].location.display_address
+	            ]
 	        }
-	        
+
 	        latcoor = data["coordinates"].results[0].geometry.location.lat
 	        longcoor = data["coordinates"].results[0].geometry.location.lng
 	     	drawMap(arr, latcoor, longcoor)
