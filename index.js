@@ -28,10 +28,10 @@ app.get('/location/:search', function(req, res) {
 
 app.get('/coordinates/:points', function(req, res) {
 	let input = req.params.points
-	request(('https://maps.googleapis.com/maps/api/geocode/json?address=' + input + "&key=" + googleapi), function (error, response, body) {
-	  let latlang = body
-	})
-	res.json(latlang)
+	// request(('https://maps.googleapis.com/maps/api/geocode/json?address=' + input + "&key=" + googleapi), function (error, response, body) {
+	//  let latlang = body
+	// })
+	res.json("Hey" + input)
 })
 
 app.listen(process.env.PORT || 3000, function() {
