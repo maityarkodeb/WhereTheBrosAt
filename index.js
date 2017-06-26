@@ -4,9 +4,9 @@ let path = require("path")
 let app = express();
 let request = require('request');
 
-let clientId = "-1QwOXiItXRc4WP3s7yazw";
-let clientSecret = "YuM1FkgCxrWAZG5CEmnUVwu412ncTO8PLj5VyNI7Aw9po0O49yohL7PBMrHXvF7p";
-let googleapi = "AIzaSyBmVblixeQ5-vb_gvdTWuvznRs8lUuoV4k";
+let clientId = process.env.CLIENT_ID;
+let clientSecret = process.env.CLIENT_SECRET;
+let googleapi = process.env.GOOGLEMAPSAPI;
 let yelp = new Yelp({ id: clientId , secret: clientSecret });
 
 
