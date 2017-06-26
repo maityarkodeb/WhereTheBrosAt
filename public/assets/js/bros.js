@@ -1,24 +1,38 @@
 $(document).ready(function() {
+	$('#progressbar').hide();
+	$('#alertpopup').hide();
 	$('#tabs a').click(function(e) {
 		e.preventDefault()
 		$(this).tab('show')
 	})
 
 	$('#location').keyup(function(e){
-    if(e.keyCode == 13)
-    {
-       ///$("#map").empty();
-		let location = $('#location').val();
-
-		retrieveInfo(location)
-    }
+    	let location = $('#location').val();
+    	
+    	if(e.keyCode == 13)
+    	{
+	    	if(location == "") {
+	    		$("#alertpopup").show()
+	    	}
+	    	else {
+	    	$("#alertpopup").hide()
+	    	$('#progressbar').show();
+			retrieveInfo(location)
+			}
+    	}
 	});
 
 	$('#goBtn').click(function () {
-		///$("#map").empty();
 		let location = $('#location').val();
-
-		retrieveInfo(location)
+		
+		if(location == ""){
+	    	$("#alertpopup").show()
+	    	}
+	    else {
+	    	$("#alertpopup").hide()
+	    	$('#progressbar').show();
+			retrieveInfo(location)
+			}
 	});
 
 	function drawMap(arr, latcoor, longcoor) {
@@ -69,6 +83,7 @@ $(document).ready(function() {
 	        latcoor = data["coordinates"].results[0].geometry.location.lat
 	        longcoor = data["coordinates"].results[0].geometry.location.lng
 	     	drawMap(arr, latcoor, longcoor)
+	     	$('#progressbar').hide();
 	}})
 	}
 });

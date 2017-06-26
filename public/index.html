@@ -10,41 +10,58 @@
     <script src="assets/js/bros.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmVblixeQ5-vb_gvdTWuvznRs8lUuoV4k&callback=initMap"
     async defer></script>
+    </style>
   </head>
-  <body>
-    <div class="container-fluid">
-    	<div class="row">
-    		<div class="col-md-12">
-    			<div class="jumbotron">
-    				<h1 class="text-center">Where the Bros At?</h1>
-    			</div>
-    		</div>
-    		<div class="col-md-4"></div>
-    		<div class="col-md-4">
-    			<div class="input-group input-group-lg">
-    				<input id="location" type="text" class="form-control">
-    				<span class="input-group-btn">
-    					<button id="goBtn" class="btn" type="button">Go!</button>
-    				</span>
-    			</div>
-    		</div>
-    		<div class="col-md-4"></div>
-    	</div>
-    	<div class="row">
-    		<div class="col-md-2"></div>
-    		<div class="col-md-8">
-    			<div id="results">
-    				<ul id="tabs" class="nav nav-pills">
-  						<li class="active"><a>Map</a></li>
-  						<li><a>List</a></li>
-						</ul>
-						<div class="tab-content">
-                         <div id="map" style="width: 500px; height: 400px;"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="text-center">Where the Bros At?</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <h2>
+                        Lookin' for bros ?
+                    </h2>
+                    <p>
+                        Well you came to the right place. Where you lookin' for bros at ? <br> Enter a location below to see how close it is to some bros !
+                    </p>
+                    <form role="form">
+                        <div class="input-group">
+                            <input id="location" type="text" class="form-control" placeholder="New York, Paris, etc...">
+                            <span class="input-group-btn">
+                            <button id="goBtn" class="btn btn-primary" type="button">Show me the Bros!</button>
+                            </span>
                         </div>
-    			</div>
-    		</div>
-    		<div class="col-md-2"></div>
-    	</div>
+                    </form>
+                    <br><div id="alertpopup" class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4>
+                            NICE TRY!
+                        </h4> <strong>Woah there, bro!</strong> That search query didn't make a lot of sense -- please try again.
+                    </div>
+                    <div id="progressbar" class="progress">
+                      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                      Searching ...
+                      </div>
+                    </div>
+                    <div id="results">
+                        <ul id="tabs" class="nav nav-pills">
+                            <li class="active"><a>Map</a></li>
+                            <li><a>List</a></li>
+                        </ul>
+                        <div class="tab-content">
+                        <div id="map" style="width: 500px; height: 400px;"></div>
+                        </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
-</html>
+</div>
