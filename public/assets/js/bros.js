@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 	$('#location').keypress(function(e){
     	let location = $('#location').val();
+    	$("#map").empty();
     	
     	if(e.keyCode == 13)
     	{
@@ -21,6 +22,7 @@ $(document).ready(function() {
 
 	$('#goBtn').click(function () {
 		let location = $('#location').val();
+		$("#map").empty();
 		
 		if(location == "" ||  $.trim(location) == "" || location.replace(" ", "") == ""){
 	    	$("#alertpopup").show()
@@ -34,7 +36,7 @@ $(document).ready(function() {
 
 	function drawMap(arr, latcoor, longcoor) {
 		        let map = new google.maps.Map(document.getElementById('map'), {
-			      zoom: 10,
+			      zoom: 11,
 			      center: {lat: latcoor, lng: longcoor},
 			      mapTypeId: google.maps.MapTypeId.ROADMAP
 			    });
@@ -49,7 +51,7 @@ $(document).ready(function() {
 			        map: map
 			      });
 
-			      map.setCenter({lat: latcoor, lng: longcoor});
+			      // map.setCenter({lat: latcoor, lng: longcoor});
 
 			      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			        return function() {
