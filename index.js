@@ -16,24 +16,35 @@ app.use(express.static(publicPath))
 app.get('/location/:search', function(req, res) {
 	let input = req.params.search
 
-
-	yelp.search("term=frat&location=" + input)
+	let firstQuery = new Promise((resolve, reject) => {
+		yelp.search("term=frat&location=" + input)
 	    .then(function(result){
-	           res.json(result);
+	           resolve(result)
 	        })
 	    .catch(function (err) {
-	    console.error(err);
+	    	reject(err)
 		});
-})
+    });
 
-app.get('/coordinates/:points', function(req, res) {
-	let input = req.params.points
-	// request(('https://maps.googleapis.com/maps/api/geocode/json?address=' + input + "&key=" + googleapi), function (error, response, body) {
-	//  let latlang = body
-	// })
-	res.json("Hey" + input)
+	let secondQuery = new Promise((resolve, reject) => {
+        request(('https://maps.googleapis.com/maps/api/geocode/json?address=' + input + "&key=" + googleapi), function (error, response, body) {
+            if (!error) {
+            	let latlang = JSON.parse(body)
+                resolve(latlang);
+            } else {
+                reject(error);
+            }
+        })
+    })
+
+    Promise.all([firstQuery, secondQuery])
+        .then((results) => {
+            res.send({ "listings": results[0], "coordinates": results[1] });
+        })
+        .catch((err) => {
+            res.send({});
+        });
 })
 
 app.listen(process.env.PORT || 3000, function() {
-console.log("express is listening")
-})
+console.log("express is listening")})

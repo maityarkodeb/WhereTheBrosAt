@@ -5,34 +5,32 @@ $(document).ready(function() {
 	})
 
 	$('#goBtn').click(function () {
+		$("#map").empty();
 		let location = $('#location').val();
 
 		retrieveInfo(location)
 	});
 
-	function retrieveCoordinates(location, arr) {
-		 $.ajax({
-		      type: 'GET',
-		      url: ("/coordinates/" + location),
-		      
-		      success: function(data) {
-		        let latcoor = data.results[0].geometry.location.lat
-		        let langcoor = data.results[0].geometry.location.lng
-		        var map = new google.maps.Map(document.getElementById('map'), {
+	function drawMap(arr, latcoor, longcoor) {
+		        let map = new google.maps.Map(document.getElementById('map'), {
 			      zoom: 10,
-			      center: {lat: latcoor, lng: langcoor},
+			      center: {lat: latcoor, lng: longcoor},
 			      mapTypeId: google.maps.MapTypeId.ROADMAP
 			    });
 
-			    var infowindow = new google.maps.InfoWindow();
 
-			    var marker, i;
+		        console.log(latcoor, longcoor, location)
+			    let infowindow = new google.maps.InfoWindow();
+
+			    let marker, i;
 
 			    for (i = 0; i < arr.length; i++) {  
 			      marker = new google.maps.Marker({
 			        position: new google.maps.LatLng(arr[i][1], arr[i][2]),
 			        map: map
 			      });
+
+			      map.setCenter({lat: latcoor, lng: longcoor});
 
 			      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			        return function() {
@@ -42,8 +40,6 @@ $(document).ready(function() {
 			      })(marker, i));
 	    		}
 		        }
-	      })
-	}
 
 	function retrieveInfo(location) {
 	 $.ajax({
@@ -51,19 +47,19 @@ $(document).ready(function() {
 	      url: ("/location/" + location),
 	      
 	      success: function(data) {
-	        let lengtharray = data.businesses.length
+	        let lengtharray = data["listings"].businesses.length
 	        let arr = []
 
 	        for (let i = 0; i < lengtharray; i++) {
-	            arr[i] = [data.businesses[i].name, 
-	            data.businesses[i].coordinates.latitude, 
-	            data.businesses[i].coordinates.longitude,
-	            data.businesses[i].location.display_address]
+	            arr[i] = [data["listings"].businesses[i].name, 
+	            data["listings"].businesses[i].coordinates.latitude, 
+	            data["listings"].businesses[i].coordinates.longitude,
+	            data["listings"].businesses[i].location.display_address]
 	        }
 	        
-	        coordinates = retrieveCoordinates(location, arr)
-	        
-	      }
-	})
-	} 
+	        latcoor = data["coordinates"].results[0].geometry.location.lat
+	        longcoor = data["coordinates"].results[0].geometry.location.lng
+	     	drawMap(arr, latcoor, longcoor)
+	}})
+	}
 });
