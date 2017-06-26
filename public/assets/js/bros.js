@@ -13,7 +13,7 @@ $(document).ready(function() {
 	function retrieveCoordinates(location, arr) {
 		 $.ajax({
 	      type: 'GET',
-	      url: ("/coordinates" + location),
+	      url: ("/coordinates/" + location),
 	      
 	      success: function(data) {
 	        let latcoor = data.results[0].geometry.location.lat
