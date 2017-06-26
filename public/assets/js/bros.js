@@ -24,7 +24,6 @@ $(document).ready(function() {
 	});
 
 	$('#goBtn').click(function () {
-		e.preventDefault()
 		let location = $('#location').val();
 		
 		if(location == ""){
