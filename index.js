@@ -13,6 +13,10 @@ let yelp = new Yelp({ id: clientId , secret: clientSecret });
 let publicPath = path.resolve(__dirname, "public")
 app.use(express.static(publicPath))
 
+app.get('/config.js', function(req, res) {
+	res.send("var googleSrcApi='"+process.env.GOOGLEMAPSAPI+"'");
+})
+
 app.get('/location/:search', function(req, res) {
 	let input = req.params.search
 
