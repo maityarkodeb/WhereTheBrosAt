@@ -18,8 +18,6 @@ $(document).ready(function() {
 			      mapTypeId: google.maps.MapTypeId.ROADMAP
 			    });
 
-
-		        console.log(latcoor, longcoor, location)
 			    let infowindow = new google.maps.InfoWindow();
 
 			    let marker, i;
@@ -56,7 +54,7 @@ $(document).ready(function() {
 	            data["listings"].businesses[i].coordinates.longitude,
 	            data["listings"].businesses[i].location.display_address]
 	        }
-	        console.log(data)
+	        
 	        latcoor = data["coordinates"].results[0].geometry.location.lat
 	        longcoor = data["coordinates"].results[0].geometry.location.lng
 	     	drawMap(arr, latcoor, longcoor)
