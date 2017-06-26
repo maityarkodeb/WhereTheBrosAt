@@ -7,6 +7,7 @@ $(document).ready(function() {
 	})
 
 	$('#location').keyup(function(e){
+		e.preventDefault()
     	let location = $('#location').val();
     	
     	if(e.keyCode == 13)
@@ -23,6 +24,7 @@ $(document).ready(function() {
 	});
 
 	$('#goBtn').click(function () {
+		e.preventDefault()
 		let location = $('#location').val();
 		
 		if(location == ""){
