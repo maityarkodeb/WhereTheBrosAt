@@ -1,10 +1,6 @@
 $(document).ready(function() {
 	$('#progressbar').hide();
 	$('#alertpopup').hide();
-	$('#tabs a').click(function(e) {
-		e.preventDefault()
-		$(this).tab('show')
-	})
 
 	$('#location').keypress(function(e){
     	let location = $('#location').val();
