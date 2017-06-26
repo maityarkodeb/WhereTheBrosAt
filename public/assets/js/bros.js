@@ -4,7 +4,7 @@ $(document).ready(function() {
 		$(this).tab('show')
 	})
 
-	$('textarea').keyup(function(e){
+	$('#location').keyup(function(e){
     if(e.keyCode == 13)
     {
        ///$("#map").empty();
