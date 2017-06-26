@@ -56,7 +56,7 @@ $(document).ready(function() {
 	            data["listings"].businesses[i].coordinates.longitude,
 	            data["listings"].businesses[i].location.display_address]
 	        }
-	        
+	        console.log(data)
 	        latcoor = data["coordinates"].results[0].geometry.location.lat
 	        longcoor = data["coordinates"].results[0].geometry.location.lng
 	     	drawMap(arr, latcoor, longcoor)
