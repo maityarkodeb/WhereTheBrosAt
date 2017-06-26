@@ -6,37 +6,44 @@ $(document).ready(function() {
 
 	$('#goBtn').click(function () {
 		let location = $('#location').val();
-		console.log(location)
+
 		retrieveInfo(location)
-
-
-	/*
-
-	 var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: location,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(arr[i][1], arr[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(arr[i][0]), arr[i][3];
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
-	**/
 	});
+
+	function retrieveCoordinates(location, arr) {
+		 $.ajax({
+	      type: 'GET',
+	      url: ("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=" + GOOGLEMAPSAPI),
+	      
+	      success: function(data) {
+	        let latcoor = data.results[0].geometry.location.lat
+	        let langcoor = data.results[0].geometry.location.lng
+	        var map = new google.maps.Map(document.getElementById('map'), {
+		      zoom: 10,
+		      center: {lat: latcoor, lng: langcoor},
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    });
+
+		    var infowindow = new google.maps.InfoWindow();
+
+		    var marker, i;
+
+		    for (i = 0; i < arr.length; i++) {  
+		      marker = new google.maps.Marker({
+		        position: new google.maps.LatLng(arr[i][1], arr[i][2]),
+		        map: map
+		      });
+
+		      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		        return function() {
+		          infowindow.setContent(arr[i][0]), arr[i][3];
+		          infowindow.open(map, marker);
+		        	}	
+		      })(marker, i));
+    		}
+	        }
+	      })
+	}
 
 	function retrieveInfo(location) {
 	 $.ajax({
@@ -53,7 +60,9 @@ $(document).ready(function() {
 	            data.businesses[i].coordinates.longitude,
 	            data.businesses[i].location.display_address]
 	        }
-	        console.log(arr)
+	        
+	        coordinates = retrieveCoordinates(location, arr)
+	        
 	      }
 	})
 	} 
