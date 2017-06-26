@@ -6,13 +6,13 @@ $(document).ready(function() {
 		$(this).tab('show')
 	})
 
-	$('#location').keyup(function(e){
-		e.preventDefault()
+	$('#location').keypress(function(e){
     	let location = $('#location').val();
     	
     	if(e.keyCode == 13)
     	{
-	    	if(location == "") {
+    		e.preventDefault()
+	    	if(location == "" ||  $.trim(location) == "" || location.replace(" ", "") == "") {
 	    		$("#alertpopup").show()
 	    	}
 	    	else {
