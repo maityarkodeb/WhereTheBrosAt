@@ -13,7 +13,7 @@ $(document).ready(function() {
 	function retrieveCoordinates(location, arr) {
 		 $.ajax({
 	      type: 'GET',
-	      url: ("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=" + GOOGLEMAPSAPI),
+	      url: ("/coordinates" + location),
 	      
 	      success: function(data) {
 	        let latcoor = data.results[0].geometry.location.lat
@@ -48,7 +48,7 @@ $(document).ready(function() {
 	function retrieveInfo(location) {
 	 $.ajax({
 	      type: 'GET',
-	      url: ("/" + location),
+	      url: ("/location/" + location),
 	      
 	      success: function(data) {
 	        let lengtharray = data.businesses.length
