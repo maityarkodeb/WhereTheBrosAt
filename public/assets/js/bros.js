@@ -4,10 +4,10 @@ $(document).ready(function() {
 
 	$('#location').keypress(function(e){
     	let location = $('#location').val();
-    	$("#map").empty();
     	
     	if(e.keyCode == 13)
     	{
+    		$("#map").empty();
     		e.preventDefault()
 	    	if(location == "" ||  $.trim(location) == "" || location.replace(" ", "") == "") {
 	    		$("#alertpopup").show()
@@ -50,8 +50,6 @@ $(document).ready(function() {
 			        position: new google.maps.LatLng(arr[i][1], arr[i][2]),
 			        map: map
 			      });
-
-			      // map.setCenter({lat: latcoor, lng: longcoor});
 
 			      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			        return function() {
